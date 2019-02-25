@@ -15,5 +15,11 @@
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
 	<classpathentry exported="true" kind="lib" path="/home/sk/Desktop/Npopo/mysql-connector-java-5.1.24-bin.jar"/>
 	<classpathentry exported="true" kind="lib" path="WebContent/WEB-INF/lib/mysql-connector-java-5.1.24-bin.jar"/>
+	<classpathentry kind="lib" path="/home/sk/Desktop/Npopo/Electricity/WebContent/WEB-INF/lib/pdfbox-2.0.13.jar"/>
+	<classpathentry kind="lib" path="/home/sk/Downloads/fontbox-1.8.16.jar"/>
+	<classpathentry kind="lib" path="/home/sk/Downloads/jempbox-1.8.16.jar"/>
+	<classpathentry kind="lib" path="/home/sk/Downloads/pdfbox-2.0.13.jar"/>
+	<classpathentry kind="lib" path="/home/sk/Downloads/preflight-1.8.16.jar"/>
+	<classpathentry kind="lib" path="/home/sk/Downloads/xmpbox-1.8.16.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

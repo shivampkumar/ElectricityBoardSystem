@@ -38,15 +38,59 @@ try {
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>User Page</title>
 </head>
 <body>
 <h1> Welcome User!</h1>
 <% Cookie cookie = null;
    Cookie[] cookies = null;
    cookies=request.getCookies();
-   cookie= cookies[1];
-   out.println("<marquee><h2> Yo "+ cookie.getValue()+ "</h2></marquee>");
+   String us="";
+   for(int i=0; i<cookies.length; i++)
+   {
+	   System.out.println(cookies[i].getValue());
+	   cookie= cookies[i];
+	   if(cookie.getName().equals("uname"))
+{
+	System.out.println("found");
+	us= cookies[i].getValue();
+}
+   }
+   
+  // String us= cookie.getValue();
+   out.println("<h2> Hello "+ us+ "</h2>");
+   Statement st= dbConnection.createStatement();
+   ResultSet rs=st.executeQuery("select * from users where username='"+us+"'");
+   String units;
+   String usertype;
+   while (rs.next()) {
+   	units= rs.getString("units");
+   	usertype=rs.getString("usertype");
+   	Cookie cookier = new Cookie("uname",us);
+   	Cookie cookiest= new Cookie("usertype", usertype);
+   	Cookie cooki= new Cookie("units", units);
+	cookier.setMaxAge(60*60*24);
+	cookiest.setMaxAge(60*60*24);
+	response.addCookie(cookier);
+	response.addCookie(cookiest);
+	response.addCookie(cooki);
+   	out.println("The number of units you have consumed till date is:"+units+"<br>");
+   	int paid= rs.getInt("paid");
+   	if(paid==0)
+   	{
+   		out.println("You have not paid for previous month<br>");
+   		out.println("<form action='paybill.jsp'> <input type='submit' value='Pay Bill' //><//form>");
+   	}
+   	else
+   	{
+   		out.println("Bill already paid!!");
+   	}
+   }
+   //your units consumed this month
+   //total amount due as of now 
+   //pay bill
+   
  %>
+ 
 </body>
 </html>
