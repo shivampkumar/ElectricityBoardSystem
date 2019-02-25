@@ -63,17 +63,21 @@ try {
    ResultSet rs=st.executeQuery("select * from users where username='"+us+"'");
    String units;
    String usertype;
+   String phone;
    while (rs.next()) {
    	units= rs.getString("units");
    	usertype=rs.getString("usertype");
+   	phone=rs.getString("phone");
    	Cookie cookier = new Cookie("uname",us);
    	Cookie cookiest= new Cookie("usertype", usertype);
    	Cookie cooki= new Cookie("units", units);
+   	Cookie cokis= new Cookie("phone",phone);
 	cookier.setMaxAge(60*60*24);
 	cookiest.setMaxAge(60*60*24);
 	response.addCookie(cookier);
 	response.addCookie(cookiest);
 	response.addCookie(cooki);
+	response.addCookie(cokis);
    	out.println("The number of units you have consumed till date is:"+units+"<br>");
    	int paid= rs.getInt("paid");
    	if(paid==0)
