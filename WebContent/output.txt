@@ -1,5 +1,5 @@
-Username:madhu
+Username:mudit
 Usertype:industrial
-Units Consumed:100
+Units Consumed:400
 
-Bill amount:600.0
+Bill amount:2720.0

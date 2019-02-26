@@ -85,26 +85,59 @@ ps.setString(5, "1");
 
     // TODO code application logic here
     
+    
+    
+    
+    
     String key="gdO9C4afUMrbADv23LZVeG6RiQBlFJ8cjwInyxYhEKHqsuTo5P7Zvkcg2epqd9R5W4ai0VzJbxus8LGA";
-    	String message="Dear "+us+" Thank you for paying your bill amount of Rupees "+amt+" via the Electricity board payment gateway.";
+    	String message="Dear%20"+us+"%20Thank%20you%20for%20paying%20your%20bill%20amount%20of%20Rupees%20"+amt+"%20via%20the%20Electricity%20board%20payment%20gateway.";
     //	HttpResponse response = Unirest.get("https://www.fast2sms.com/dev/bulk?authorization="+key+"&sender_id=FSTSMS&message="+message+"&language=english&route=p&numbers="+phone) .header("cache-control", "no-cache").asString();
+    //phone="7779877280";
+    // message="Yo%20sushmith%20it%20works!";
+     String req="https://www.fast2sms.com/dev/bulk?authorization="+key+"&sender_id=FSTSMS&message="+message+"&language=english&route=p&numbers="+phone+"";
+
+     URL url = null;
      
-    URL url = new URL("https://smsapi.engineeringtgr.com/send/?Mobile=8976648824&Password=need4speed&Message="+message+"&To="+phone+"&Key=shiva3FtiKxyUPcvACgQoJBN");
-        URLConnection urlcon = url.openConnection();
-        InputStream stream = urlcon.getInputStream();
-        String responser="";
-        while ((i = stream.read()) != -1) {
-            responser+=(char)i;
-        }
-        if(responser.contains("success")){
-            System.out.println("Successfully send SMS");
+     try{
+    url= new URL("https://www.fast2sms.com/dev/bulk?authorization="+key+"&sender_id=FSTSMS&message="+message+"&language=english&route=p&numbers="+phone+"");
+    //url = URLEncoder.encode(req, "UTF-8");
+    //url.replaceAll(" " ,"%20");
+    HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+    conn.setRequestMethod("GET");
+    
+    conn.setReadTimeout(15*1000);
+    conn.connect();
+    StringBuilder result = new StringBuilder();
+    
+    
+    BufferedReader rd = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+    String line;
+    while ((line = rd.readLine()) != null) {
+       result.append(line);
+    }
+    rd.close();
+     }
+     catch(Exception e)
+     {
+    	 System.out.println(e.getMessage());
+     }
+    
+    //URL url = new URL("https://smsapi.engineeringtgr.com/send/?Mobile=8976648824&Password=need4speed&Message="+message+"&To="+phone+"&Key=shiva3FtiKxyUPcvACgQoJBN");
+      //  URLConnection urlcon = url.openConnection();
+      //  InputStream stream = urlcon.getInputStream();
+    //    String responser="";
+    //    while ((i = stream.read()) != -1) {
+   //         responser+=(char)i;
+   //     }
+    //    if(responser.contains("success")){
+    //        System.out.println("Successfully send SMS");
             //your code when message send success
-        }else{
-            System.out.println(response);
+    //    }else{
+     //       System.out.println("response="+response);
             //your code when message not send
-        }
-    } catch (IOException e) {
-        System.out.println(e.getMessage());
+     //   }
+   // } catch (IOException e) {
+   //     System.out.println(e.getMessage());
     
   
   

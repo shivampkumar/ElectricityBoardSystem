@@ -48,7 +48,7 @@ cal.setTime(date);
 int year = cal.get(Calendar.YEAR);
 int month = cal.get(Calendar.MONTH);
 int day = cal.get(Calendar.DAY_OF_MONTH);
-int paid=0;
+int paid=1;
 int units=0;
 st.executeUpdate("insert into users values('"+us+"','"+pw+"','"+fn+"','"+ln+"','"+em+"','"+ad+"','"+ph+"','"+ut+"','"+day+"','"+month+"','"+year+"','"+units+"','"+paid+"')");
 out.println("Registration Successful!");

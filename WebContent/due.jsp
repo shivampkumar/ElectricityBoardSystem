@@ -32,7 +32,11 @@ try {
   ex.printStackTrace();
 }
 %>
-<head> <title>Due bills</title></head>
+<head> <title>Due bills</title>
+ <link rel="stylesheet" type="text/css" href="style.css" />
+</head>
+<body>
+<div class="table">
 <h1>Due Bills</h1>
 <% 
 	 //Class.forName("com.mysql.jdbc.Driver").newInstance();
@@ -41,15 +45,26 @@ Statement st= dbConnection.createStatement();
 ResultSet rs=st.executeQuery("select * from users where paid=0 and (usertype='industrial' or usertype='agricultural' or usertype='home')");
 %> <table><tr><th>Username<th>FirstName<th>LastName<th>Email<th>Phone</tr>
 <% 
-while (rs.next()) { %>
+int i=0;
+while (rs.next()) { %> <h3>
 	<tr><td><%out.println(rs.getString("username")); %></td>
     <td><%out.println(rs.getString("firstname")); %></td>
     <td><%out.println(rs.getString("lastname")); %></td>
      <td><%out.println(rs.getString("email")); %></td>
       <td><%out.println(rs.getString("phone")); %></td>
-    </tr>
+    </tr> </h3>
 <% 
 } 
 %>
 </table>
+</div>
+  <form>
+<input type="button" style="margin:auto;display:block"class="button" value="Logout" onclick="window.location.href='logout.jsp'" />
+</form>
+<div class="navbar">
+  <a href="adminhome.jsp" class="active">Home</a>
+  
+  <a href="contact.jsp">Contact</a>
+</div>
+</body>
 	

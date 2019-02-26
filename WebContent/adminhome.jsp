@@ -39,14 +39,18 @@ try {
 <head>
 <meta charset="UTF-8">
 <title>Admin Path</title>
+ <link rel="stylesheet" type="text/css" href="style.css" />
  <script src="./adminhome.js"></script>
+
 </head>
 <body>
+<div class="contain">
 <h1> Welcome Admin!</h1>
 <% //Check any users status
 //Generate any users bill
 //Give list of all unpaid users
 %>
+
 <button id ="b1">Check User Status</button>
 <button id= "b3">List of Due Bills</button>
 <% 
@@ -64,13 +68,13 @@ ResultSet rs=st.executeQuery("select * from users where username= '"+username+"'
         
 <% 
 while (rs.next()) { 
-	out.println("Username:"+ rs.getString("username")+"<br>");
-    out.println("FirstName"+rs.getString("firstname")+"<br>"); 
-    out.println("LastName"+rs.getString("lastname")+"<br>"); 
-    out.println("Email"+rs.getString("email")+"<br>"); 
-    out.println("Phone"+rs.getString("phone")+"<br>"); 
-    out.println("Usertype"+rs.getString("usertype")+"<br>"); 
-    out.println("Units Consumed"+rs.getString("units")+"<br>"); 
+	out.println("<h3>Username:"+ rs.getString("username")+"<br>");
+    out.println("FirstName:"+rs.getString("firstname")+"<br>"); 
+    out.println("LastName:"+rs.getString("lastname")+"<br>"); 
+    out.println("Email:"+rs.getString("email")+"<br>"); 
+    out.println("Phone:"+rs.getString("phone")+"<br>"); 
+    out.println("Usertype:"+rs.getString("usertype")+"<br>"); 
+    out.println("Units Consumed:"+rs.getString("units")+"<br></h3>"); 
     Cookie cookier = new Cookie("uname",rs.getString("username"));
    	Cookie cookiest= new Cookie("usertype", rs.getString("usertype"));
    	Cookie cooki= new Cookie("units", rs.getString("units"));
@@ -84,5 +88,14 @@ while (rs.next()) {
 %>
 </p>
 
+</div>
+ <form>
+<input type="button" style="margin:auto;display:block"class="button" value="Logout" onclick="window.location.href='logout.jsp'" />
+</form>
+<div class="navbar">
+  <a href="#home" class="active">Home</a>
+  SK Tech
+</div>
 
+</body>
 </html>

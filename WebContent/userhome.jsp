@@ -38,9 +38,13 @@ try {
 <html>
 <head>
 <meta charset="UTF-8">
+ <link rel="stylesheet" type="text/css" href="style.css" />
 <title>User Page</title>
 </head>
 <body>
+<br><br><br><br>
+<div class="contain">
+
 <h1> Welcome User!</h1>
 <% Cookie cookie = null;
    Cookie[] cookies = null;
@@ -82,7 +86,7 @@ try {
    	int paid= rs.getInt("paid");
    	if(paid==0)
    	{
-   		out.println("You have not paid for previous month<br>");
+   		out.println("You have not paid<br>");
    		out.println("<form action='paybill.jsp'> <input type='submit' value='Pay Bill' //><//form>");
    	}
    	else
@@ -95,6 +99,15 @@ try {
    //pay bill
    
  %>
- 
+
+ </div>
+  <form>
+<input type="button" style="margin:auto;display:block"class="button" value="Logout" onclick="window.location.href='logout.jsp'" />
+</form>
+<div class="navbar">
+  <a href="#home" class="active">Home</a>
+  
+  <a href="contact.jsp">Contact</a>
+</div>
 </body>
 </html>

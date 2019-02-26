@@ -1,11 +1,22 @@
 <%@ page import= "java.io.FileWriter" %>
 <%@ page import= "java.io.FileReader" %>
 <%@ page import= "java.io.File" %>
-<%@ page import= "java.io.IOException" %>
+<%@ page import= "java.io.*" %>
+<%@ page import = "java.awt.Desktop" %>
+
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
+    
+    <!DOCTYPE html>
+<html>
+<head>
+ <link rel="stylesheet" type="text/css" href="style.css" />
+<meta charset="UTF-8">
+<title>Payment Gateway</title>
+</head>
+<body> <div class= "contain">
     <%
     
     Cookie cookie = null;
@@ -82,12 +93,23 @@
     System.out.println("Succes");
     fw.close();
     
+    File file = new File("/home/sk/Desktop/Npopo/Electricity/WebContent/output.txt");
+    
+    //first check if Desktop is supported by Platform or not
+    if(!Desktop.isDesktopSupported()){
+        System.out.println("Desktop is not supported");
+        return;
+    }
+    
+    Desktop desktop = Desktop.getDesktop();
+    if(file.exists()) desktop.open(file);
+    
    
     //File file = new File("something");
     //System.out.println(file.getAbsolutePath());
 
     // read from FileReader till the end of file 
-    out.println("Username:"+us+"<br>Usertype:"+usertype+"<br>Units Consumed:"+units+"<br><br>Bill amount:"+ba);
+    out.println("<h3>Username:"+us+"<br>Usertype:"+usertype+"<br>Units Consumed:"+units+"<br><br>Bill amount: "+ba+"</h3");
     Cookie cookier = new Cookie("uname",us);
    	Cookie cookiest= new Cookie("amt", Double.toString(ba));
    	Cookie cookiesh= new Cookie("phone", (phone));
@@ -98,13 +120,16 @@
 	response.addCookie(cookiesh);
     %>
     
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Payment Gateway</title>
-</head>
-<body>
-<a href= 'billing.jsp'> Make Payment</a>
+<form>
+<input type="button" class="tr" style="margin:auto;display:block"class="button" value="Make Payment" onclick="window.location.href='billing.jsp'" /></form>
+</div>
 </body>
+  <form>
+<input type="button" style="margin:auto;display:block"class="button" value="Logout" onclick="window.location.href='logout.jsp'" />
+</form>
+<div class="navbar">
+  <a href="userhome.jsp" class="active">Home</a>
+  
+  <a href="contact.jsp">Contact</a>
+</div>
 </html>
